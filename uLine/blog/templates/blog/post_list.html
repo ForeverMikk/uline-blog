@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Techblog - Blog de Tecnologia e Innovacion</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+            <a class="navbar-brand" href="#" style="color: white;">TechBlog</a>
+            <ul class="nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#"> Inicio </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Acerca de</a>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="cover d-flex justify-content-center align-items-center flex-column" style="height: 400px; background-color: #D1E1E3;">
+            <h1>
+                TechBlog
+            </h1>
+            <p>
+                Blog de Tecnologia e Innovacion
+            </p>
+            <button class="btn btn-primary">
+              Conoce Mas
+            </button>
+        </div>
+    </header>
+
+    <!-- Aqui van a ir todos los post  -->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                {% for post in posts %}
+                <div>   
+                    <h2 class="mt-4">{{ post.titulo }}</h2>
+                    <p class="lead">Autor: {{ post.autor }}</p>
+                    <p>Publicado: {{ post.fecha_publicacion }}</p>
+                    <p class="lead">{{ post.texto }}</p>
+                </div>
+                {% endfor %}
+                
+                <!-- Formulario para los comentarios -->
+                <div class="card my-4">
+                    <h5 class="card-header">Deja tu Comentario:</h5>
+                    <div class="card-body">
+                    <form>
+                        <div class="form-group">
+                        <textarea class="form-control" rows="3"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Comentar</button>
+                    </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+</body>
+</html>

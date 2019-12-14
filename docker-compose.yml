@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+  db:
+    image: postgres
+    environment:
+      DB_USER: uline_user
+      DB_PASS: Passw0rd
+      B_NAME: uline_db
+    ports:
+      - "5432:5432"
+  web:
+    build: .
+    command: python uLine/manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/code
+    ports:
+      - "8000:8000"
+    depends_on:
+      - migration
+  migration:
+    build: .
+    image: app
+    command: bash -c "python uLine/manage.py makemigrations --noinput && python uLine/manage.py migrate --noinput"
+    volumes:
+      - .:/code
+    links:
+      - db
+    depends_on:
+      - db
